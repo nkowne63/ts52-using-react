@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+
+Symbol.dispose = Symbol.for('Symbol.dispose')
+
+const rgen = (count) => ({
+  [Symbol.dispose]() {
+    console.log('disposed', count)
+  }
+})
 
 function App() {
+  const [count, setCount] = useState(0)
+  using r = rgen(count);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        sample app
       </header>
+      <button onClick={() => setCount(count => count+1)}>count: {count}</button>
     </div>
   );
 }
